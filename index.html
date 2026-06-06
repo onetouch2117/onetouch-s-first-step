@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>무작위 동물 카드 뽑기</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+      background: linear-gradient(135deg, #8ec5fc, #e0c3fc);
+      color: #333;
+      display: flex;
+      min-height: 100vh;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .container {
+      width: min(720px, 100%);
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+      border-radius: 24px;
+      padding: 32px;
+      text-align: center;
+    }
+
+    h1 {
+      margin: 0 0 16px;
+      font-size: clamp(2rem, 3vw, 2.75rem);
+      letter-spacing: -0.03em;
+    }
+
+    p {
+      margin: 0 0 24px;
+      font-size: 1rem;
+      color: #555;
+    }
+
+    button {
+      border: none;
+      background: #6c5ce7;
+      color: #fff;
+      padding: 14px 28px;
+      font-size: 1rem;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.2s ease;
+      margin-bottom: 24px;
+    }
+
+    button:hover {
+      background: #5a4bd1;
+      transform: translateY(-2px);
+    }
+
+    .card {
+      background: linear-gradient(180deg, #fff 0%, #f7f5ff 100%);
+      border: 1px solid rgba(112, 91, 255, 0.18);
+      border-radius: 24px;
+      padding: 32px;
+      box-shadow: 0 12px 30px rgba(70, 42, 211, 0.12);
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    .animal-emoji {
+      font-size: 5rem;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .animal-name {
+      margin: 0 0 12px;
+      font-size: 2rem;
+      font-weight: 700;
+    }
+
+    .animal-desc {
+      margin: 0;
+      font-size: 1rem;
+      line-height: 1.7;
+      color: #4b4a6b;
+    }
+
+    .small-note {
+      margin-top: 24px;
+      font-size: 0.9rem;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>무작위 동물 카드 뽑기</h1>
+    <p>버튼을 눌러 오늘의 동물 카드를 뽑아보세요.</p>
+    <button id="drawButton" type="button">카드 뽑기</button>
+
+    <div class="card" id="animalCard">
+      <span class="animal-emoji" id="animalEmoji">🐾</span>
+      <h2 class="animal-name" id="animalName">여기를 눌러 동물을 뽑아보세요</h2>
+      <p class="animal-desc" id="animalDescription">무작위로 선택된 동물 카드가 이곳에 표시됩니다.</p>
+    </div>
+
+    <p class="small-note">매번 새로고침 없이 버튼을 눌러 다양한 동물 카드를 확인할 수 있습니다.</p>
+  </div>
+
+  <script>
+    const animals = [
+      {
+        emoji: '🐶',
+        name: '강아지',
+        description: '충성스럽고 귀여운 친구. 함께 산책하고 놀기 좋아하는 동물입니다.',
+      },
+      {
+        emoji: '🐱',
+        name: '고양이',
+        description: '호기심 많고 독립적인 성격. 부드러운 털과 다정한 눈빛이 매력적입니다.',
+      },
+      {
+        emoji: '🦁',
+        name: '사자',
+        description: '숲의 왕. 용감하고 위풍당당한 모습으로 리더십을 상징합니다.',
+      },
+      {
+        emoji: '🐵',
+        name: '원숭이',
+        description: '장난기 많고 영리한 동물. 나무 사이를 날렵하게 뛰어다닙니다.',
+      },
+      {
+        emoji: '🐼',
+        name: '판다',
+        description: '느긋하고 귀여운 외모. 대나무를 먹으며 평화로운 시간을 보냅니다.',
+      },
+      {
+        emoji: '🐧',
+        name: '펭귄',
+        description: '추운 지역에 사는 날지 못하는 새. 함께 걷는 모습이 사랑스럽습니다.',
+      },
+      {
+        emoji: '🦉',
+        name: '부엉이',
+        description: '지혜의 상징. 어두운 밤에도 날카로운 시력으로 사물을 관찰합니다.',
+      },
+      {
+        emoji: '🦋',
+        name: '나비',
+        description: '화려한 날개를 가진 곤충. 변화를 상징하며 가볍게 날아다닙니다.',
+      },
+    ];
+
+    const button = document.getElementById('drawButton');
+    const emojiEl = document.getElementById('animalEmoji');
+    const nameEl = document.getElementById('animalName');
+    const descriptionEl = document.getElementById('animalDescription');
+
+    function drawRandomAnimal() {
+      const randomIndex = Math.floor(Math.random() * animals.length);
+      const animal = animals[randomIndex];
+      emojiEl.textContent = animal.emoji;
+      nameEl.textContent = animal.name;
+      descriptionEl.textContent = animal.description;
+    }
+
+    button.addEventListener('click', drawRandomAnimal);
+  </script>
+</body>
+</html>
